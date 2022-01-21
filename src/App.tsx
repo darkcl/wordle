@@ -12,6 +12,7 @@ import { isWordInWordList, isWinningWord, solution } from './lib/words'
 import { addStatsForCompletedGame, loadStats } from './lib/stats'
 import {
   loadGameStateFromLocalStorage,
+  resetGameState,
   saveGameStateToLocalStorage,
 } from './lib/localStorage'
 
@@ -97,7 +98,9 @@ function App() {
       if (guesses.length === 5) {
         setStats(addStatsForCompletedGame(stats, guesses.length + 1))
         setIsGameLost(true)
+        resetGameState()
         return setTimeout(() => {
+          window.location.reload()
           setIsGameLost(false)
         }, 2000)
       }
